@@ -13,6 +13,7 @@ Please install the ICS-8580 SDK Version 3.x required for complation of the plugi
 ```
 sudo apt-get install libgstreamer1.0-dev autoconf automake libtool
 ```
+Before building export ICS8580_PATH to point to your ICS-8580 SDK install location.
 
 *NOTE:* No need to run make-element (in tools dir) as this has already been done
 # Building
@@ -35,10 +36,11 @@ gst-launch-1.0 -v v4l2src ! "video/x-raw, width=640, height=480" ! videoscale ! 
 ```
 ![PAL Output](abaco/B&W_PAL.JPG)
 PAL (P26 on DAQMAG2A) output of black and white CRT (With text overlay).
-# Known Issues
-* PAL/NTSC input deinterlacing drops odd lines (very basic). Could do with improvement.
-* PAL/NTSC output interlacing is macro defined in sink. Need to auto detect.
-* Not all modes have been tested. Contact author for more information.
+# Known Issues / Todo
+- [ ] PAL/NTSC input deinterlacing drops odd lines (very basic). Could do with improvement.
+- [ ] PAL/NTSC output interlacing is macro defined in sink. Need to auto detect.
+- [ ] Not all modes have been tested. Contact author for more information.
+- [ ] Remove other absolute paths to ICS-8580 SDK.
 
 # Links
 * [Abaco Systems ICS-8580](https://www.abaco.com/products/ics-8580-video-compression-board)
