@@ -34,7 +34,7 @@ gst-launch-1.0 -v videotestsrc pattern=0 horizontal-speed=1 ! "video/x-raw, widt
 ```
 # Known Issues
 * PAL/NTSC input deinterlacing drops every odd lines (very basic). Could do with improvement.
-* PAL/NTSC output interlacing does not work yet.
+* PAL/NTSC output interlacing is macro defined in sink. Need to auto detect.
 * Not all modes have been tested. Contact author for more information.
 
 # Links
