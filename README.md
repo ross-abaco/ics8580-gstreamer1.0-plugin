@@ -39,6 +39,7 @@ gst-launch-1.0 -v v4l2src ! "video/x-raw, width=640, height=480" ! videoscale ! 
 * Not all modes have been tested. Contact author for more information.
 
 # Links
-[Abaco Systems ICS-8580](https://www.abaco.com/products/ics-8580-video-compression-board)
-[Abaco Systems DAQMAG2A](https://www.abaco.com/products/daqmag2a-rugged-display-computer)
+* [Abaco Systems ICS-8580](https://www.abaco.com/products/ics-8580-video-compression-board)
+*[Abaco Systems DAQMAG2A](https://www.abaco.com/products/daqmag2a-rugged-display-computer)
+
 ![Abaco footer](abaco/Abaco%20Footer1000x100.png)
