@@ -65,7 +65,6 @@
 #include <string.h>
 #include "gst8580sink.h"
 #include "gst8580capture.h"
-#include "gst8580capture.h"
 #include "videotestsrc.h"
 
 /* Filter signals and args */
@@ -340,7 +339,7 @@ GstFlowReturn gst_8580sink_render (GstBaseSink *bsink, GstBuffer *buffer)
   /* g_print ("frame %d.\n", (int)src->n_frames++);*/
   GetPut8580((char*)info.data); 
 
-  printf ("frame %d.\n", (int)sink->n_frames++);
+//  printf ("frame %d.\n", (int)sink->n_frames++);
 
   gst_buffer_unmap (buffer, &info);
 

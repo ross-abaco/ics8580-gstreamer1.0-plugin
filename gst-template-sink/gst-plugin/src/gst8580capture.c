@@ -21,10 +21,6 @@
 
 #include "gst8580capture.h"
 
-//GST_DEBUG_CATEGORY_STATIC (gst_8580capture_debug);
-//#define GST_CAT_DEFAULT gst_8580capture_debug
-//#define GST_LEVEL_DEBUG            8
-
 #pragma GCC diagnostic ignored "-Wunused-value"
 #pragma GCC diagnostic ignored "-Wmissing-braces"
 
@@ -201,13 +197,10 @@ static int once_fill =0; /* Quick hack to reduce CPU load */
 *
 * NOTES :           none.
 */
-//static char* video_tx;
 int videoOpen(ICS8580_USER_ARGS args)
 {
     params = args;
-	TRACE("Allocating video buffer.");
-//	video_tx = (char*)malloc(ResolutionTable[(int)args.video_out.videoOutputResolution].width * ResolutionTable[(int)args.video_out.videoOutputResolution].height * 3);
-
+    TRACE("Allocating video buffer.");
     return Init8580Channels(args);
 }
 
@@ -216,118 +209,13 @@ int col=0;
 int videoClose(void)
 {
     Finalize8580();
-//    free (video_tx);
     return ICS8580_OK;
 }
-
-/*******************************************************************
-* NAME :            fillTestRGB(char *winBuf,int size)
-*
-* DESCRIPTION :     Initialise the video channel for input (RGB Bars).
-*
-* INPUTS :
-*       PARAMETERS:
-*           char     *winBuf           -> The buffer being filled.
-*           int      size              The size of the buffer being filled.
-* OUTPUTS :
-*       PARAMETERS:
-*           none.
-*       RETURN :
-*            Type:   int                   Result of update
-*            Values: 1                     success
-*
-* NOTES :           Used for debug and test only.
-*/
-#define IMAGE_WIDTH 480
-int fillTestRGB(char *winBuf,int size)
-    {
-    if (once_fill==0)
-        {
-        int loop,x = 0;
-        int colorBar = 0;
-        int barsize = IMAGE_WIDTH / 9;
-        uchar3 *winPtr;
-
-        winPtr = (uchar3 *)winBuf;
-
-        for (loop=0;loop<size;loop++)
-            {
-            if ((x>0) && (x<barsize)) colorBar=0;
-            if ((x>barsize*1) && (x<barsize*2)) colorBar=1;
-            if ((x>barsize*2) && (x<barsize*3)) colorBar=2;
-            if ((x>barsize*3) && (x<barsize*4)) colorBar=3;
-            if ((x>barsize*4) && (x<barsize*5)) colorBar=4;
-            if ((x>barsize*5) && (x<barsize*6)) colorBar=5;
-            if ((x>barsize*6) && (x<barsize*7)) colorBar=6;
-            if ((x>barsize*7) && (x<barsize*8)) colorBar=7;
-            if ((x>barsize*8) && (x<barsize*9)) colorBar=8;
-            x++;
-            if (x==IMAGE_WIDTH) x=0;
-
-            switch(colorBar)
-                {
-                case 0:/* Blue */
-                    winPtr->r=15;
-                    winPtr->g=16;
-                    winPtr->b=184;  
-                    break;
-                case 1:/* Red */
-                    winPtr->r=183;
-                    winPtr->g=15;
-                    winPtr->b=15;  
-                    break;
-                case 2:/* Magenta */
-                    winPtr->r=182;
-                    winPtr->g=15;
-                    winPtr->b=183;  
-                    break;
-                case 3:/* Green */
-                    winPtr->r=15;
-                    winPtr->g=182;
-                    winPtr->b=114;  
-                    break;
-                case 4:/* Cyan */
-                    winPtr->r=13;
-                    winPtr->g=181;
-                    winPtr->b=181;  
-                    break;
-                case 5:/* Yellow */
-                    winPtr->r=182;
-                    winPtr->g=181;
-                    winPtr->b=13;  
-                    break;
-                case 7:/* Gray */
-                    winPtr->r=181;
-                    winPtr->g=181;
-                    winPtr->b=181;  
-                    break;
-                case 6:/* White */
-                    winPtr->r=255;
-                    winPtr->g=255;
-                    winPtr->b=255;  
-                    break;
-                case 8:/* Black */
-                    winPtr->r=0;
-                    winPtr->g=0;
-                    winPtr->b=0;  
-                    break;
-                }
-            winPtr++;
-            }
-        col++;
-        if (col==254) col=0;
-        once_fill=1;
-        }
-    return(1);
-    }	
 
 int Init8580(ICS8580_USER_ARGS args)
 {
 	ICS8580_CHAR_T                pcieName[]     = PCI_NAME;
     ICS8580_LOGIN_PARAMS          sLoginParams;
-
-//    GST_DEBUG_CATEGORY_INIT (gst_8580capture_debug, "8580capture", 0, "Template 8580capture");
-//    gst_debug_set_threshold_for_name ("8580capture", GST_LEVEL_DEBUG); 
 
     memset(&sLoginParams,  0, sizeof(ICS8580_LOGIN_PARAMS));
 
@@ -450,7 +338,6 @@ int Init8580Channels(ICS8580_USER_ARGS args)
 
 #if OUTPUT_ENABLED
 		/* Create Data Channel with the user parameters */
-		TRACE_ERROR("Test 1 %d %d 0x%d 0x%d\n", args.channel, NUMBER_OF_BUFFERS, pBuffer[0], pBuffer[1]);
 		if(ICS8580_OK != ics8580DataChannelCreate (&hDataTransfer, 
 				                                  hPcieHandle, 
 				                                  args.channel, 
@@ -460,7 +347,6 @@ int Init8580Channels(ICS8580_USER_ARGS args)
 				                                  NUMBER_OF_BUFFERS)) {
 		TRACE_ERROR("ics8580DataChannelCreate failed\n");
 		}
-		TRACE_ERROR("Test 2 %d %d 0x%d 0x%d\n", args.channel, NUMBER_OF_BUFFERS, pBuffer[0], pBuffer[1]);
 
 		/* Queue all the buffers */
 		if(ICS8580_OK != ics8580StartWriteQueue (hDataTransfer)) {
@@ -495,12 +381,12 @@ int Init8580Channels(ICS8580_USER_ARGS args)
 int GetPut8580(char *buf)
     {
 	int width, height;
-	width = ResolutionTable[(int)params.video_out.videoOutputResolution].width;
+	width = ResolutionTable[(int)params.video_out.videoOutputResolution].width * 2;
 	height = ResolutionTable[(int)params.video_out.videoOutputResolution].height;
 
     ICS8580_ULONG_T nIndex = nCount%NUMBER_OF_BUFFERS;
 
-    TRACE_ERROR("Processing frame %d %d...\r", nCount, width);
+    TRACE("Processing frame %d %d...\n", nCount, nIndex);
     nCount++;
 
 #if OUTPUT_ENABLED
@@ -516,29 +402,25 @@ int GetPut8580(char *buf)
     else {
   	  /* No colour conversion required */
 #if 0
-	  memcpy((byte*)pBuffer[nIndex], (byte *)buf, width*height*2);
+    // Handle Progressive video
+	  memcpy((byte*)pBuffer[nIndex], (byte *)buf, width*320);
 #else	  
+    // Handle Interlaced video
     {
       int i;
-      byte * pbuffo, * pbuffe;
+      byte * pbuff, * pbuffe;
       
-      pbuffo = (byte*)pBuffer[nIndex];
- //     pbuffe = (byte*)pBuffer[1];
+      pbuff = (byte*)pBuffer[nIndex];
       
   	  for (i=0;i<height/2;i++)
 	    {
-	      memcpy(&pbuffo[(i*2)*(width*2)], (byte *)&buf[(i*2)*(width*2)], (width*2));
-//	      memcpy(&pbuffe[(i*STRIDE)*width*2], (byte *)&buf[(i)*width], width*2);
+	      memcpy(&pbuff[i*width],     (byte *)&buf[(i*2)*width],     width);
+	      memcpy(&pbuff[(i+height/2)*width], (byte *)&buf[((i+1)*2)*width], width);
 	    }
-#if 0
-  	  for (i=1;i<height/2;i++)
-	    {
-	      memcpy(&pbuff2[(width/2)+i*width], (byte *)&buf[(i*2)*width], width);
-	    }
-#endif
 	  }
 #endif
 
+//      printf("Processing frame %d %d...\n", nCount, nIndex);
       if(ICS8580_OK != ics8580DataWriteQueue (hDataTransfer, nIndex)) {                               /* Re-submit the pBuffer */
         printf("Write Queue failed for channel %d\n", DMA_CHANNEL);
       }
