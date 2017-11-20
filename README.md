@@ -28,9 +28,10 @@ cd ./gst-plugin-[src|sink]/gst-plugin
 gst-inspect-1.0 8580s[src|sink]
 ```
 # Testing
-You can invoke the plugin from the command line. This is the simplest way to create a pipeline.
+You can invoke the plugin from the command line. This is the simplest way to create a pipeline. The two examples below show how you can stream video from the test source and scale video from a webcam (v4l2 driver). The only tested webcam was the Logitech C920.
 ```
 gst-launch-1.0 -v videotestsrc pattern=0 horizontal-speed=1 ! "video/x-raw, width=640, height=480" ! 8580sink output=2 type=1 res=2 channel=1
+gst-launch-1.0 -v v4l2src ! "video/x-raw, width=640, height=480" ! videoscale ! videoconvert ! "video/x-raw, width=720, height=576" ! 8580sink output=2 type=1 res=2 channel=1 sync=false
 ```
 # Known Issues
 * PAL/NTSC input deinterlacing drops every odd lines (very basic). Could do with improvement.
