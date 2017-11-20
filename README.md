@@ -1,6 +1,7 @@
 ![Abaco stripe](abaco/Abaco_background-1000x275.png)
 # ics8580-gstreamer1.0-plugin
 Sink and source plugin for the Abaco Systems ICS-8580 board.
+![PAL Output](abaco/B&W_PAL.JPG)
 
 This plugin is tested under Gstreamer 1.2.4 in Ubuntu x64 14.04 LTS.
 # Dependancies
