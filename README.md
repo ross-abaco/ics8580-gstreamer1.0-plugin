@@ -41,4 +41,4 @@ gst-inspect-1.0 8580s[src|sink]
 # Links
 [Abaco Systems ICS-8580](https://www.abaco.com/products/ics-8580-video-compression-board)
 
-![Abaco footer](abaco/Abaco Footer1000x100.png)
+![Abaco footer](abaco/Abaco%20Footer1000x100.png)
