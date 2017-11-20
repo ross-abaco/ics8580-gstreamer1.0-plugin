@@ -17,7 +17,7 @@ Before building export ICS8580_PATH to point to your ICS-8580 SDK install locati
 
 *NOTE:* No need to run make-element (in tools dir) as this has already been done
 # Building
-Configure the build environment.
+Configure the build environment. Commands need to be done twice for both the sink and source plugins.
 ```
 cd ./gst-plugin-[src|sink]/gst-plugin
 ./autogen.sh
@@ -26,10 +26,17 @@ cd ./gst-plugin-[src|sink]/gst-plugin
 ```
 cd ./gst-plugin-[src|sink]/gst-plugin
 ./sudo make install
-gst-inspect-1.0 8580s[src|sink]
+```
+To verify the two plugins are installed use the gst-inspect command:
+```
+gst-inspect-1.0 8580src
+...
+gst-inspect-1.0 8580sink
 ```
 # Testing
 You can invoke the plugin from the command line. This is the simplest way to create a pipeline. The two examples below show how you can stream video from the test source and scale video from a webcam (v4l2 driver). The only tested webcam was the Logitech C920.
+
+To //////////////////////launch a pipeline:
 ```
 gst-launch-1.0 -v videotestsrc pattern=0 horizontal-speed=1 ! "video/x-raw, width=640, height=480" ! 8580sink output=2 type=1 res=2 channel=1
 gst-launch-1.0 -v v4l2src ! "video/x-raw, width=640, height=480" ! videoscale ! videoconvert ! "video/x-raw, width=720, height=576" ! 8580sink output=2 type=1 res=2 channel=1 sync=false
