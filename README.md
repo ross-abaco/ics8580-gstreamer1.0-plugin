@@ -34,7 +34,7 @@ gst-launch-1.0 -v videotestsrc pattern=0 horizontal-speed=1 ! "video/x-raw, widt
 gst-launch-1.0 -v v4l2src ! "video/x-raw, width=640, height=480" ! videoscale ! videoconvert ! "video/x-raw, width=720, height=576" ! 8580sink output=2 type=1 res=2 channel=1 sync=false
 ```
 ![PAL Output](abaco/B&W_PAL.JPG)
-PAL output of black and white CRT (With text overlay).
+PAL (P26 on DAQMAG2A) output of black and white CRT (With text overlay).
 # Known Issues
 * PAL/NTSC input deinterlacing drops odd lines (very basic). Could do with improvement.
 * PAL/NTSC output interlacing is macro defined in sink. Need to auto detect.
