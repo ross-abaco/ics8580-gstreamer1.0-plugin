@@ -30,7 +30,7 @@ AC_CHECK_PROG(HAVE_PKGCONFIG, pkg-config, [ ], [
 ])
 
 # Added by Ross
-export LD_LIBRARY_PATH=/home/user/ics8580-src/lin/api
+export LD_LIBRARY_PATH=$ICS8580_PATH
 #export LDFLAGS=-L/home/user/ics8580-src/lin/api
 export LIBS="-lics8580functional -lics8580api"
 #export GST_CFLAGS=-I/home/user/ics8580-src/common/api/inc
