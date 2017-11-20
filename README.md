@@ -1,6 +1,6 @@
 ![Abaco stripe](abaco/Abaco_background-1000x275.png)
 # ics8580-gstreamer1.0-plugin
-Sink and source plugin for the Abaco Systems ICS8580 board.
+Sink and source plugin for the Abaco Systems ICS-8580 board.
 
 This plugin is tested under Gstreamer 1.2.4 in Ubuntu x64 14.04 LTS.
 # Dependancies
@@ -34,7 +34,7 @@ gst-launch-1.0 -v videotestsrc pattern=0 horizontal-speed=1 ! "video/x-raw, widt
 gst-launch-1.0 -v v4l2src ! "video/x-raw, width=640, height=480" ! videoscale ! videoconvert ! "video/x-raw, width=720, height=576" ! 8580sink output=2 type=1 res=2 channel=1 sync=false
 ```
 # Known Issues
-* PAL/NTSC input deinterlacing drops every odd lines (very basic). Could do with improvement.
+* PAL/NTSC input deinterlacing drops odd lines (very basic). Could do with improvement.
 * PAL/NTSC output interlacing is macro defined in sink. Need to auto detect.
 * Not all modes have been tested. Contact author for more information.
 
