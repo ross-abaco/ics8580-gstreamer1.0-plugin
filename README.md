@@ -1,3 +1,4 @@
+![Abaco stripe](abaco/Abaco_background-1000x275.png)
 # ics8580-gstreamer1.0-plugin
 Sink and source plugin for the Abaco Systems ICS8580 board.
 
@@ -16,6 +17,7 @@ Please install the ICS-8580 SDK Version 3.x required for complation of the plugi
 sudo apt-get install libgstreamer1.0-dev autoconf automake libtool
 ```
 
+*NOTE:* No need to run make-element (in tools dir) as this has already been done
 # Building
 
 Configure the build environment.
@@ -31,5 +33,12 @@ cd ./gst-plugin-[src|sink]/gst-plugin
 gst-inspect-1.0 8580s[src|sink]
 ```
 
+# Known Issues
+* PAL/NTSC input deinterlacing drops every odd lines (very basic). Could do with improvement.
+* PAL/NTSC output interlacing does not work yet.
+* Not all modes have been tested. Contact author for more information.
+
 # Links
 [Abaco Systems ICS-8580](https://www.abaco.com/products/ics-8580-video-compression-board)
+
+![Abaco footer](abaco/Abaco Footer1000x100.png)
