@@ -1,6 +1,6 @@
 ![Abaco stripe](abaco/Abaco_background-1000x275.png)
 # ics8580-gstreamer1.0-plugin
-Sink and source plugin for the Abaco Systems ICS8580 board.
+Sink and source plugin for the Abaco Systems ICS-8580 board.
 
 This plugin is tested under Gstreamer 1.2.4 in Ubuntu x64 14.04 LTS.
 # Dependancies
@@ -28,16 +28,20 @@ cd ./gst-plugin-[src|sink]/gst-plugin
 gst-inspect-1.0 8580s[src|sink]
 ```
 # Testing
-You can invoke the plugin from the command line. This is the simplest way to create a pipeline.
+You can invoke the plugin from the command line. This is the simplest way to create a pipeline. The two examples below show how you can stream video from the test source and scale video from a webcam (v4l2 driver). The only tested webcam was the Logitech C920.
 ```
 gst-launch-1.0 -v videotestsrc pattern=0 horizontal-speed=1 ! "video/x-raw, width=640, height=480" ! 8580sink output=2 type=1 res=2 channel=1
+gst-launch-1.0 -v v4l2src ! "video/x-raw, width=640, height=480" ! videoscale ! videoconvert ! "video/x-raw, width=720, height=576" ! 8580sink output=2 type=1 res=2 channel=1 sync=false
 ```
+![PAL Output](abaco/B&W_PAL.JPG)
+PAL (P26 on DAQMAG2A) output of black and white CRT (With text overlay).
 # Known Issues
-* PAL/NTSC input deinterlacing drops every odd lines (very basic). Could do with improvement.
+* PAL/NTSC input deinterlacing drops odd lines (very basic). Could do with improvement.
 * PAL/NTSC output interlacing is macro defined in sink. Need to auto detect.
 * Not all modes have been tested. Contact author for more information.
 
 # Links
-[Abaco Systems ICS-8580](https://www.abaco.com/products/ics-8580-video-compression-board)
+* [Abaco Systems ICS-8580](https://www.abaco.com/products/ics-8580-video-compression-board)
+* [Abaco Systems DAQMAG2A](https://www.abaco.com/products/daqmag2a-rugged-display-computer)
 
 ![Abaco footer](abaco/Abaco%20Footer1000x100.png)
