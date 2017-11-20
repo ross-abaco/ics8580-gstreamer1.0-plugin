@@ -29,9 +29,7 @@ cd ./gst-plugin-[src|sink]/gst-plugin
 ```
 To verify the two plugins are installed use the gst-inspect command:
 ```
-gst-inspect-1.0 8580src
-...
-gst-inspect-1.0 8580sink
+gst-inspect-1.0 8580[src|sink]
 ```
 # Testing
 You can invoke the plugin from the command line. This is the simplest way to create a pipeline. The two examples below show how you can stream video from the test source and scale video from a webcam (v4l2 driver). The only tested webcam was the Logitech C920.
