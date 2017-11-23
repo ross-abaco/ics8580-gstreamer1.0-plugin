@@ -70,7 +70,7 @@ AC_MSG_CHECKING([to see if compiler understands -Wall])
 save_CFLAGS="$CFLAGS"
 CFLAGS="$CFLAGS -Wall"
 AC_COMPILE_IFELSE([AC_LANG_PROGRAM([ ], [ ])], [
-  GST_CFLAGS="$GST_CFLAGS -Wall -DLINUX -I/home/user/ics8580-src/common/api/inc -L/home/user/ics8580-src/lin/api"
+  GST_CFLAGS="$GST_CFLAGS -Wall -DLINUX -I$ICS8580_PATH/common/api/inc -L$ICS8580_PATH/lin/api"
   AC_MSG_RESULT([yes])
 ], [
   AC_MSG_RESULT([no])

@@ -31,9 +31,7 @@ AC_CHECK_PROG(HAVE_PKGCONFIG, pkg-config, [ ], [
 
 # Added by Ross
 export LD_LIBRARY_PATH=$ICS8580_PATH
-#export LDFLAGS=-L/home/user/ics8580-src/lin/api
 export LIBS="-lics8580functional -lics8580api"
-#export GST_CFLAGS=-I/home/user/ics8580-src/common/api/inc
 
 dnl Check for the required version of GStreamer core (and gst-plugins-base)
 dnl This will export GST_CFLAGS and GST_LIBS variables for use in Makefile.am
@@ -72,7 +70,7 @@ AC_MSG_CHECKING([to see if compiler understands -Wall])
 save_CFLAGS="$CFLAGS"
 CFLAGS="$CFLAGS -Wall"
 AC_COMPILE_IFELSE([AC_LANG_PROGRAM([ ], [ ])], [
-  GST_CFLAGS="$GST_CFLAGS -Wall -DLINUX -I/home/user/ics8580-src/common/api/inc -L/home/user/ics8580-src/lin/api"
+  GST_CFLAGS="$GST_CFLAGS -Wall -DLINUX -I$ICS8580_PATH/common/api/inc -L$ICS8580_PATH/lin/api"
   AC_MSG_RESULT([yes])
 ], [
   AC_MSG_RESULT([no])
