@@ -1,4 +1,4 @@
-![Abaco stripe](abaco/Abaco_background-1000x275.png)
+libgstreamer1.0-dev![Abaco stripe](abaco/Abaco_background-1000x275.png)
 # ics8580-gstreamer1.0-plugin
 Sink and source plugin for the Abaco Systems ICS-8580 board.
 
@@ -11,13 +11,13 @@ Requires the ISC-8580 XMC card, reffer to manual for installation instructions.
 Please install the ICS-8580 SDK Version 3.x required for complation of the plugin.
 
 ```
-sudo apt-get install libgstreamer1.0-dev autoconf automake libtool
+sudo apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev autoconf automake libtool git 
 ```
 Before building export ICS8580_PATH to point to your ICS-8580 SDK install location.
 
 *NOTE:* No need to run make-element (in tools dir) as this has already been done
 # Building
-Configure the build environment. Commands need to be done twice for both the sink and source plugins.
+Clone the depot to your machine and configure the build environment. Commands need to be done twice for both the sink and source plugins.
 ```
 cd ./gst-plugin-[src|sink]/gst-plugin
 ./autogen.sh
