@@ -1,11 +1,11 @@
 /*
- * � GE Intelligent Platforms Embedded Systems Inc (2014)
+ * � Abaco Systems (2017)
  *
  * All rights reserved. No part of this software may be re-produced, re-engineered, 
  * re-compiled, modified, used to create derivatives, stored in a retrieval system, 
  * or transmitted in any form or by any means, electronic, mechanical, photocopying, 
- * recording, or otherwise without the prior written permission of GE Intelligent 
- * Platforms Embedded Systems Inc.
+ * recording, or otherwise without the prior written permission of Abaco 
+ * Systems.
  */
 #include "ics8580FunctionalApi.h"
 
@@ -373,6 +373,7 @@ int Init8580Channels(ICS8580_USER_ARGS args)
         TRACE
             ("Please wait while the application is receiving frames...\n");
     }
+
     return ICS8580_OK;
 }
 

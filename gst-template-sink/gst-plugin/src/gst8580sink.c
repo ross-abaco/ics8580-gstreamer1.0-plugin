@@ -227,9 +227,6 @@ static void gst_8580sink_init(Gst8580sink * filter)
 
 static gboolean gst_8580sink_start(GstBaseSink * bsink)
 {
-    Gst8580sink *videotestsink;
-    videotestsink = GST_8580SINK(bsink);
-
     GST_LOG("gst_8580sink_create.\n");
     return TRUE;
 }
@@ -342,7 +339,6 @@ static gboolean gst_8580sink_stop(GstBaseSink * bsink)
     return TRUE;
 }
 
-
 static void
 gst_8580sink_set_property(GObject * object, guint prop_id,
                           const GValue * value, GParamSpec * pspec)
@@ -406,9 +402,6 @@ static gboolean
 gst_8580sink_event(GstPad * pad, GstObject * parent, GstEvent * event)
 {
     gboolean ret;
-    Gst8580sink *filter;
-
-    filter = GST_8580SINK(parent);
 
     switch (GST_EVENT_TYPE(event)) {
     case GST_EVENT_CAPS:
