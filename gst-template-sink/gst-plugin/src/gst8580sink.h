@@ -51,14 +51,12 @@
 #include <gst/video/video.h>
 #include "gst8580capture.h"
 
-GST_DEBUG_CATEGORY_STATIC (gst_8580sink_debug);
+GST_DEBUG_CATEGORY_STATIC(gst_8580sink_debug);
 #define GST_CAT_DEFAULT gst_8580sink_debug
 #define GST_LEVEL_DEBUG            8
 
 G_BEGIN_DECLS
-
 /* #defines don't like whitespacey bits */
-
 #define GST_TYPE_8580SINK (gst_8580sink_get_type())
 #define GST_8580SINK(obj) \
   (G_TYPE_CHECK_INSTANCE_CAST((obj),GST_TYPE_8580SINK,Gst8580sink))
@@ -68,42 +66,38 @@ G_BEGIN_DECLS
   (G_TYPE_CHECK_INSTANCE_TYPE((obj),GST_TYPE_8580SINK))
 #define GST_IS_8580SINK_CLASS(klass) \
   (G_TYPE_CHECK_CLASS_TYPE((klass),GST_TYPE_8580SINK))
-
-typedef struct _Gst8580sink      Gst8580sink;
+typedef struct _Gst8580sink Gst8580sink;
 typedef struct _Gst8580sinkClass Gst8580sinkClass;
 
-struct _Gst8580sink
-{
-  GstVideoSink element;
+struct _Gst8580sink {
+    GstVideoSink element;
 
-  GstPad *sinkpad, *srcpad;
+    GstPad *sinkpad, *srcpad;
 
-  int num_buffers;
-  int res;
-  int type;
-  int output;
-  int channel;
-  GstVideoInfo info;
+    int num_buffers;
+    int res;
+    int type;
+    int output;
+    int channel;
+    GstVideoInfo info;
 
-  /* private */
-  ICS8580_USER_ARGS args;
-  gint64 timestamp_offset;           /* base offset */
+    /* private */
+    ICS8580_USER_ARGS args;
+    gint64 timestamp_offset;    /* base offset */
 
-  /* running time and frames for current caps */
-  GstClockTime running_time;         /* total running time */
-  int n_frames;                      /* total frames sent */
-  int height;
-  int width;
-  int framerate;
+    /* running time and frames for current caps */
+    GstClockTime running_time;  /* total running time */
+    int n_frames;               /* total frames sent */
+    int height;
+    int width;
+    int framerate;
 };
 
-struct _Gst8580sinkClass 
-{
-  GstVideoSinkClass parent_class;
+struct _Gst8580sinkClass {
+    GstVideoSinkClass parent_class;
 };
 
-GType gst_8580sink_get_type (void);
+GType gst_8580sink_get_type(void);
 
 G_END_DECLS
-
-#endif /* __GST_8580SINK_H__ */
+#endif                          /* __GST_8580SINK_H__ */
