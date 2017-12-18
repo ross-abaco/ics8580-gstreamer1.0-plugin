@@ -40,6 +40,8 @@ gst-launch-1.0 -v videotestsrc pattern=0 horizontal-speed=1 ! "video/x-raw, widt
 ```
 
 ## SRC
+There are a number of gstreamer example scripts in the gst-plugin directory:
+* test00-all-atonce.sh	- Test PAL inputs and HD-SDI at once. Display on screen.
 
 ## SINK
 There are a number of gstreamer example scripts in the gst-plugin directory:
@@ -49,8 +51,19 @@ There are a number of gstreamer example scripts in the gst-plugin directory:
 * test03-pngtv-roi.sh	- Test TV output extracting Region Of Interest (ROI) from an 8k image
 * test04-pngtv-scale.sh	- Test TV output extracting Region Of Interest (ROI) from an 8k image
 * test05-pngtv-stream.sh - Test TV output extracting Region Of Interest (ROI) from an 8k image and RTP stream over loopback interface (Stream conforms to GVA DEF-STAN 00-82).
-* test06-desktoptv.sh - Test TV output of scaled Linux desktop.
+* test06-desktoptv.sh - Test TV output of scaled Linux desktop
 
+# Ethernet jitter
+If you experiance issues with streaming video over Ethernet then increase your maximum buffers and disable pause frames:
+```
+sysctl -w net.core.rmem_default=33554432
+sysctl -w net.core.rmem_max=33554432
+sysctl -w net.core.wmem_default=33554432
+sysctl -w net.core.wmem_max=33554432
+
+# Disable pause frame support
+ethtool -A eth0 autoneg off rx off tx off
+```
 ![PAL Output](abaco/B&W_PAL.JPG)
 PAL (P26 on DAQMAG2A) output of black and white CRT (With text overlay).
 # Known Issues / Todo
