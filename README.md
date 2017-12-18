@@ -34,11 +34,23 @@ gst-inspect-1.0 8580[src|sink]
 # Testing
 You can invoke the plugin from the command line. This is the simplest way to create a pipeline. The two examples below show how you can stream video from the test source and scale video from a webcam (v4l2 driver). The only tested webcam was the Logitech C920.
 
-To launch a pipeline:
+To launch a pipeline example for sink:
 ```
 gst-launch-1.0 -v videotestsrc pattern=0 horizontal-speed=1 ! "video/x-raw, width=640, height=480" ! 8580sink output=2 type=1 res=2 channel=1
-gst-launch-1.0 -v v4l2src ! "video/x-raw, width=640, height=480" ! videoscale ! videoconvert ! "video/x-raw, width=720, height=576" ! 8580sink output=2 type=1 res=2 channel=1 sync=false
 ```
+
+## SRC
+
+## SINK
+There are a number of gstreamer example scripts in the gst-plugin directory:
+* test00.sh	- Simple test using a tes video pattern
+* test01-tv.sh - Test the TV output using a V4L2 compatible webcam
+* test02-rgb.sh	- Test VGA output
+* test03-pngtv-roi.sh	- Test TV output extracting Region Of Interest (ROI) from an 8k image
+* test04-pngtv-scale.sh	- Test TV output extracting Region Of Interest (ROI) from an 8k image
+* test05-pngtv-stream.sh - Test TV output extracting Region Of Interest (ROI) from an 8k image and RTP stream over loopback interface (Stream conforms to GVA DEF-STAN 00-82).
+* test06-desktoptv.sh - Test TV output of scaled Linux desktop.
+
 ![PAL Output](abaco/B&W_PAL.JPG)
 PAL (P26 on DAQMAG2A) output of black and white CRT (With text overlay).
 # Known Issues / Todo
