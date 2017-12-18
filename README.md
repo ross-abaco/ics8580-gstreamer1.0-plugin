@@ -64,13 +64,13 @@ sysctl -w net.core.wmem_max=33554432
 # Disable pause frame support
 ethtool -A eth0 autoneg off rx off tx off
 ```
-![PAL Output](abaco/B&W_PAL.JPG)
+![PAL Output](abaco/B&W_PAL2.JPG)
 PAL (P26 on DAQMAG2A) output of black and white CRT (With text overlay).
 # Known Issues / Todo
 - [ ] PAL/NTSC input deinterlacing drops odd lines (very basic). Could do with improvement.
-- [ ] PAL/NTSC output interlacing is macro defined in sink. Need to auto detect.
+- [x] PAL/NTSC output interlacing is macro defined in sink. Need to auto detect.
 - [ ] Not all modes have been tested. Contact author for more information.
-- [ ] Remove other absolute paths to ICS-8580 SDK.
+- [x] Remove other absolute paths to ICS-8580 SDK.
 
 # Links
 * [Abaco Systems ICS-8580](https://www.abaco.com/products/ics-8580-video-compression-board)
