@@ -97,7 +97,7 @@ static GstStaticPadTemplate sink_factory = GST_STATIC_PAD_TEMPLATE("sink",
                                                                    GST_PAD_SINK,
                                                                    GST_PAD_ALWAYS,
                                                                    GST_STATIC_CAPS
-                                                                   ("video/x-raw,format=UYVY,framerate=[25/1, 60/1],width=[ 1, 32768 ],height=[ 1, 32768 ]")
+                                                                   ("video/x-raw,format=UYVY,framerate=[0/1, 60/1],width=[ 1, 32768 ],height=[ 1, 32768 ]")
     );
 
 #define gst_8580sink_parent_class parent_class
