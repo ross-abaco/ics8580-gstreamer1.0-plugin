@@ -45,6 +45,8 @@ gst-launch-1.0 udpsrc port=${PORT} caps="application/x-rtp, media=(string)video,
     ! 8580sink output=${ICS8580_VIDEO_INPUT2_SD_HD_RGBHV} type=${ICS8580_VIDEO_TYPE_COMPOSITE} res=${ICS8580_VIDEO_RESOLUTION_PAL} channel=1 sync=false
 
 exit
+# Replace the 8580sink with this to display on local screen
+    ! xvimagesink
 
 # Non streaming version of pipeline
 gst-launch-1.0 filesrc location="test.png" ! pngdec ! imagefreeze ! \

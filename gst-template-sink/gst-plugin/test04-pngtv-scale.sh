@@ -17,5 +17,5 @@ TOP=$POS_Y
 export TIMER='timeoverlay halignment=center valignment=bottom text="Stream time:" shaded-background=true font-desc="Sans, 24"'
 
 # Good pipeline
-gst-launch-1.0 filesrc location="test.png" ! pngdec ! imagefreeze ! videoscale ! videoconvert ! ${TIMER} ! "video/x-raw, width=720, height=576, pixel-aspect-ratio=1/1, framerate=25/1" ! 8580sink output=2 type=1 res=2 channel=1 sync=false
+gst-launch-1.0 filesrc location="test.png" do-timestamp=true ! pngdec ! imagefreeze ! videoscale ! videoconvert ! ${TIMER} ! "video/x-raw, width=720, height=576, pixel-aspect-ratio=1/1, framerate=25/1" ! 8580sink output=2 type=1 res=2 channel=1 sync=false
 

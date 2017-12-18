@@ -53,7 +53,7 @@
 
 GST_DEBUG_CATEGORY_STATIC(gst_8580sink_debug);
 #define GST_CAT_DEFAULT gst_8580sink_debug
-#define GST_LEVEL_DEBUG            8
+#define GST_LEVEL_DEBUG            0
 
 G_BEGIN_DECLS
 /* #defines don't like whitespacey bits */
