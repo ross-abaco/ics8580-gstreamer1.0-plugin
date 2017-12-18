@@ -53,6 +53,9 @@ There are a number of gstreamer example scripts in the gst-plugin directory:
 * test05-pngtv-stream.sh - Test TV output extracting Region Of Interest (ROI) from an 8k image and RTP stream over loopback interface (Stream conforms to GVA DEF-STAN 00-82).
 * test06-desktoptv.sh - Test TV output of scaled Linux desktop
 
+![PAL Output](abaco/B&W_PAL2.JPG)
+PAL (P26 on DAQMAG2A) output of black and white CRT (With text overlay).
+
 # Ethernet jitter
 If you experiance issues with streaming video over Ethernet then increase your maximum buffers and disable pause frames:
 ```
@@ -64,8 +67,7 @@ sysctl -w net.core.wmem_max=33554432
 # Disable pause frame support
 ethtool -A eth0 autoneg off rx off tx off
 ```
-![PAL Output](abaco/B&W_PAL2.JPG)
-PAL (P26 on DAQMAG2A) output of black and white CRT (With text overlay).
+To execute this on startup you could place this in */etc/rc.local*
 # Known Issues / Todo
 - [ ] PAL/NTSC input deinterlacing drops odd lines (very basic). Could do with improvement.
 - [x] PAL/NTSC output interlacing is macro defined in sink. Need to auto detect.
