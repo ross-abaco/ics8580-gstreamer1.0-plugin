@@ -1,4 +1,4 @@
-libgstreamer1.0-dev![Abaco stripe](abaco/Abaco_background-1000x275.png)
+![Abaco stripe](abaco/Abaco_background-1000x275.png)
 # ics8580-gstreamer1.0-plugin
 Sink and source plugin for the Abaco Systems ICS-8580 board.
 
